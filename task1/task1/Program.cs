@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections;
 
 namespace task1
 {
@@ -12,29 +13,30 @@ namespace task1
             DateTime.TryParse(str, out date);
             var month = date.Month;
             var year = date.Year;
+
+            Console.WriteLine(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month) + " " + year);
+           
+
             var startDay = new DateTime(year, month, 1);
             
             var endDay = startDay.AddMonths(1);
 
-            DateTime stuff = new DateTime(2019, 2, 4);
-            DateTime stuffEnd = stuff.AddDays(7);
-            for (var curDay = stuff; stuff != stuffEnd; stuff.AddDays(1))
-            {
-                
+            string[] names = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames;
+
+            for (int i = 1; i <= 6; ++i)
+            {                
+                Console.Write($"{names[i]}\t");
             }
+            Console.WriteLine(names[0]);
+            Console.WriteLine("------------------------------------------------------");
 
-            var culture = new CultureInfo("ru-RU");
-            var monday = culture.DateTimeFormat.GetDayName(DayOfWeek.Monday);
-            var tuesday = culture.DateTimeFormat.GetDayName(DayOfWeek.Tuesday);
-            var wednesday = culture.DateTimeFormat.GetDayName(DayOfWeek.Wednesday);
-            var thursday = culture.DateTimeFormat.GetDayName(DayOfWeek.Thursday);
-            var friday = culture.DateTimeFormat.GetDayName(DayOfWeek.Friday);
-            var saturday = culture.DateTimeFormat.GetDayName(DayOfWeek.Saturday);
-            var sunday = culture.DateTimeFormat.GetDayName(DayOfWeek.Sunday);
+            int tabCount = (int) startDay.DayOfWeek;
 
+            Console.Write(new String('\t', startDay.DayOfWeek == DayOfWeek.Sunday ? 6 : tabCount - 1));
             for (var curDate = startDay; curDate != endDay; curDate = curDate.AddDays(1))
-            {
-                Console.WriteLine($"Number: {curDate.Day}, day of week: {curDate.DayOfWeek}");
+            {                 
+                Console.Write($"{curDate.Day}\t");
+
                 if (curDate.DayOfWeek == DayOfWeek.Sunday)
                 {
                     Console.WriteLine(Environment.NewLine);
