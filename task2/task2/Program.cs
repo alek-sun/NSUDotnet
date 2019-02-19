@@ -9,7 +9,7 @@ namespace task2
         {
             Console.WriteLine("Как тебя зовут?");
             Random random = new Random();
-            int num = random.Next(50);
+            int num = random.Next(51);
 
             string user = Console.ReadLine();            
             Console.WriteLine($"Привет, {user}! Угадай число от 0 до 50");

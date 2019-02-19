@@ -31,17 +31,23 @@ namespace task1
             Console.WriteLine("------------------------------------------------------");
 
             int tabCount = (int) startDay.DayOfWeek;
-
+            int numDays = 0, numWeekends = 0;
             Console.Write(new String('\t', startDay.DayOfWeek == DayOfWeek.Sunday ? 6 : tabCount - 1));
-            for (var curDate = startDay; curDate != endDay; curDate = curDate.AddDays(1))
+            for (var curDate = startDay; curDate != endDay; curDate = curDate.AddDays(1), numDays++)
             {                 
                 Console.Write($"{curDate.Day}\t");
 
                 if (curDate.DayOfWeek == DayOfWeek.Sunday)
                 {
+                    numWeekends++;
                     Console.WriteLine(Environment.NewLine);
                 }
+                if (curDate.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    numWeekends++;
+                }
             }
+            Console.WriteLine($"\r\n\r\nЧисло рабочих дней : {numDays - numWeekends}");
             
             Console.ReadLine();
         }
