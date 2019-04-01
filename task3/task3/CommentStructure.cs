@@ -6,15 +6,29 @@ namespace task3
 {
     abstract class CommentStructure
     {
-        readonly string CommentBeginBin;
-        readonly string CommentEndBin;
-        readonly string CommentBegin;
-        readonly List<string> Extensions;
-        /*string GetCommentBeginBin();
+        protected string CommentBeginBin;
+        protected string CommentEndBin;
+        protected string CommentBegin;
+        protected List<string> Extensions;
 
-        string GetCommentEndBin();
+        public string GetCommentBegin()
+        {
+            return CommentBegin;
+        }
 
-        string GetCommentBegin();*/
+        public string GetCommentBeginBin()
+        {
+            return CommentBeginBin;
+        }
 
+        public string GetCommentEndBin()
+        {
+            return CommentEndBin;
+        }
+
+        public List<string> GetExtensions()
+        {
+            return Extensions;
+        }
     }
 }
