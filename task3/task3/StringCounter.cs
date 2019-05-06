@@ -4,57 +4,61 @@ namespace task3
 {
     class StringCounter
     {
-        readonly CommentStructure CommentStructure;
+        readonly ICommentStructure CommentStructure;
 
-        public StringCounter(CommentStructure structure)
+        public StringCounter(ICommentStructure structure)
         {
             CommentStructure = structure;
         }
 
         public int GetStringsCount(string path)
         {
-            StreamReader sr = File.OpenText(path);
-            string s;
-            int stringsCount = 0;
-            bool commentStarted = false;
-
-            while ((s = sr.ReadLine()) != null)
+            using (var sr = File.OpenText(path))
             {
-                s = s.Trim();
+                string s;
+                int stringsCount = 0;
+                bool commentStarted = false;
 
-                if (!commentStarted && !(s.Contains(CommentStructure.GetCommentBegin())
-                    || s.Contains(CommentStructure.GetCommentBeginBin()) || s.Contains(CommentStructure.GetCommentEndBin())))
+                while ((s = sr.ReadLine()) != null)
                 {
-                    stringsCount++;
-                    continue;
-                }
+                    s = s.Trim();
 
-                if (s.Contains(CommentStructure.GetCommentBegin()) 
-                    || s.Contains(CommentStructure.GetCommentBeginBin()))
-                {   
-                    if (s.Contains(CommentStructure.GetCommentBeginBin())){
-                        commentStarted = true;
-                    }                    
-                   
-                    if (!(s.StartsWith(CommentStructure.GetCommentBegin())
-                    || s.StartsWith(CommentStructure.GetCommentBeginBin())))
+                    if (!commentStarted && !(s.Contains(CommentStructure.CommentBegin)
+                        || s.Contains(CommentStructure.CommentBeginBin) || s.Contains(CommentStructure.CommentEndBin)))
                     {
                         stringsCount++;
+                        continue;
                     }
 
-                }
-
-                if (s.Contains(CommentStructure.GetCommentEndBin())){
-                    commentStarted = false;
-                    if (!s.EndsWith(CommentStructure.GetCommentEndBin()))
+                    if (s.Contains(CommentStructure.CommentBegin)
+                        || s.Contains(CommentStructure.CommentBeginBin))
                     {
-                        stringsCount++;
-                    }
-                }
+                        if (s.Contains(CommentStructure.CommentBeginBin))
+                        {
+                            commentStarted = true;
+                        }
 
-                
+                        if (!(s.StartsWith(CommentStructure.CommentBegin)
+                        || s.StartsWith(CommentStructure.CommentBeginBin)))
+                        {
+                            stringsCount++;
+                        }
+
+                    }
+
+                    if (s.Contains(CommentStructure.CommentEndBin))
+                    {
+                        commentStarted = false;
+                        if (!s.EndsWith(CommentStructure.CommentEndBin))
+                        {
+                            stringsCount++;
+                        }
+                    }
+
+
+                }
+                return stringsCount;
             }
-            return stringsCount;
         }
     }
 }
