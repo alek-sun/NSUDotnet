@@ -18,14 +18,12 @@ namespace Auth
                 ApplicationId = 6972120,
                 Settings = Settings.All
             });
-
-            //var dialogs = api.Messages.GetConversations(new GetConversationsParams());
-            //var messages = api.Messages.GetHistory(new MessagesGetHistoryParams()
+            
             var res = api.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
             {                             
                 Fields = ProfileFields.All
             });
-            //var friends = res.Select(x => x.FirstName);
+            
             foreach (var f in res)
             {
                 Console.WriteLine($"{f.FirstName} {f.LastName}");

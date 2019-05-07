@@ -1,19 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace task4
 {
-    class Project
+    public class Project
     {
         public int Id { get; set; }
-        public Worker Worker { get; set; }
+        public virtual Worker Worker { get; set; }
         public string Name { get; set; }
         public int Premium { get; set; }        
     }
 
-    class Worker
+    public class Worker
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -23,7 +21,7 @@ namespace task4
         public virtual ICollection<Project> Projects { get; set; }
     }
 
-    class AppContext : DbContext
+    public class AppContext : DbContext
     {
 
         public DbSet<Worker> Workers { get; set; }
@@ -33,9 +31,8 @@ namespace task4
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseLazyLoadingProxies();
-            //optionsBuilder.UseMySQL("Server=(localdb)\\MSSQLLocalDB;Database=TestDB; Trusted_Connection=True;");
-            //optionsBuilder.UseSqlServer(@"Data Source = (localdb)\\MSSQLLocalDB;Database=TestDB;
+            optionsBuilder.UseLazyLoadingProxies();
+            
             //Integrated Security = True; Connect Timeout = 30; Encrypt = False; 
             //TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False");
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Database=DBTest;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
