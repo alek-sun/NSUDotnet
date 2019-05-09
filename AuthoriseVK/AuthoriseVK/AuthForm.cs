@@ -1,12 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VkNet;
 using VkNet.AudioBypassService.Extensions;
@@ -27,18 +20,23 @@ namespace AuthoriseVK
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
-        {            
-            api.Authorize(new VkNet.Model.ApiAuthParams()
+        {
+            try
             {
-                Login = loginBox.Text,
-                Password = passwBox.Text,
-                ApplicationId = 6972120,
-                Settings = Settings.All
-            });
-
-            MessageForm messageForm = new MessageForm(api);
-            messageForm.Show();
+                api.Authorize(new VkNet.Model.ApiAuthParams()
+                {
+                    Login = loginBox.Text,
+                    Password = passwBox.Text,
+                    ApplicationId = 6972120,
+                    Settings = Settings.All
+                });
+                var messageForm = new MessageForm(api);
+                messageForm.Show();
+            } catch (VkNet.Exception.VkApiAuthorizationException)
+            {
+                MessageBox.Show("Incorrect login or password, try again", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
-
     }
 }

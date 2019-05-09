@@ -7,11 +7,7 @@ namespace AuthoriseVK
 {
     public partial class MessageForm : Form
     {
-        VkApi api;
-        public MessageForm()
-        {
-            InitializeComponent();
-        }
+        VkApi api;        
 
         public MessageForm(VkApi vkApi)
         {

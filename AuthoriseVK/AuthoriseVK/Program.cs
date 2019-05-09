@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using VkNet;
-using VkNet.Enums.Filters;
-using VkNet.Model.RequestParams;
 
 namespace AuthoriseVK
 {
