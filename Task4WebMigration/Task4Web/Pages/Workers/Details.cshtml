@@ -1,0 +1,65 @@
+﻿@page
+@model Task4Web.Pages.Workers.DetailsModel
+
+@{
+    ViewData["Title"] = "Дополнительные сведения";
+}
+
+<h2>Дополнительные сведения</h2>
+
+<div>
+    <h4>Работник</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Имя
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Worker.FirstName)
+        </dd>
+        <dt>
+            Фамилия
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Worker.LastName)
+        </dd>
+        <dt>
+            Отчество
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Worker.Patronymic)
+        </dd>
+        <dt>
+            Проекты
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Назваине проекта</th>
+                    <th>Премия</th>
+                </tr>
+                @foreach (var item in Model.Worker.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.Premium)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+        <dt>
+            Суммарная премия
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Worker.Total)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Worker.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
