@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
-using VkNet;
-using VkNet.Enums.Filters;
 
 namespace AuthoriseVK
 {
     public partial class MessageForm : Form
     {
-        VkApi api;        
+        VKService VKService;        
 
-        public MessageForm(VkApi vkApi)
+        public MessageForm(VKService VKService)
         {
             InitializeComponent();
-            api = vkApi;
-            var res = api.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
-            {
-                Fields = ProfileFields.All
-            });
-
-            foreach (var f in res)
+            this.VKService = VKService;          
+            
+            foreach (var f in VKService.GetFriends())
             {
                 FriendList.Items.Add($"{f.FirstName} {f.LastName}");
             }
@@ -26,13 +20,7 @@ namespace AuthoriseVK
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(MessageText.Text);
-            api.Messages.Send(new VkNet.Model.RequestParams.MessagesSendParams
-            {
-                RandomId = new Random().Next(),
-                UserId = 61042798,
-                Message = MessageText.Text
-            });
+            VKService.SendMessage(MessageText.Text);            
         }
     }
 }

@@ -18,6 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            VKService.Dispose();
         }
 
         #region Windows Form Designer generated code

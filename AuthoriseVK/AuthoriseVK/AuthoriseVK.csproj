@@ -106,6 +106,7 @@
     <Compile Include="AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="VKService.cs" />
     <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
