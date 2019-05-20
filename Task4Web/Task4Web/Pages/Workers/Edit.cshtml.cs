@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Task4Web.Models;
 
@@ -12,9 +9,9 @@ namespace Task4Web.Pages.Workers
 {
     public class EditModel : PageModel
     {
-        private readonly Task4Web.Models.EffectiveWorkerContext _context;
+        private readonly EffectiveWorkerContext _context;
 
-        public EditModel(Task4Web.Models.EffectiveWorkerContext context)
+        public EditModel(EffectiveWorkerContext context)
         {
             _context = context;
         }

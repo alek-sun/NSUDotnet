@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +8,9 @@ namespace Task4Web.Pages.Projects
 {
     public class DetailsModel : PageModel
     {
-        private readonly Task4Web.Models.EffectiveWorkerContext _context;
+        private readonly EffectiveWorkerContext _context;
 
-        public DetailsModel(Task4Web.Models.EffectiveWorkerContext context)
+        public DetailsModel(EffectiveWorkerContext context)
         {
             _context = context;
         }

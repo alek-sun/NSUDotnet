@@ -33,7 +33,7 @@ namespace Task4Web.Pages.Workers
                 return Page();
             }
 
-            _context.Workers.Add(Worker);
+            await _context.Workers.AddAsync(Worker);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
