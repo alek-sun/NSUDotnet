@@ -8,9 +8,9 @@ namespace Task4Web.Pages.Projects
 {
     public class IndexModel : PageModel
     {
-        private readonly Task4Web.Models.EffectiveWorkerContext _context;
+        private readonly EffectiveWorkerContext _context;
 
-        public IndexModel(Task4Web.Models.EffectiveWorkerContext context)
+        public IndexModel(EffectiveWorkerContext context)
         {
             _context = context;
         }

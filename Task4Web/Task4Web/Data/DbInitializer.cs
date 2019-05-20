@@ -23,9 +23,9 @@ namespace Task4Web.Data
             new Worker{FirstName="Ann",LastName="Alonso",Patronymic=""}
             };
 
-            foreach (Worker w in workers)
+            foreach (var w in workers)
             {
-                context.Workers.Add(w);
+                context.Workers.AddAsync(w);
             }
             context.SaveChanges();
 
@@ -37,9 +37,9 @@ namespace Task4Web.Data
             new Project{Name="Music box", Premium=6000},
             new Project{Name="Painter", Premium=3000 }
             };
-            foreach (Project p in projects)
+            foreach (var p in projects)
             {
-                context.Projects.Add(p);
+                context.Projects.AddAsync(p);
             }
             context.SaveChanges();
 
@@ -58,7 +58,7 @@ namespace Task4Web.Data
             new Enrollment{WorkerID = 1, ProjectID = 4},
             };
 
-            foreach (Enrollment e in enrollments)
+            foreach (var e in enrollments)
             {
                 context.Enrollment.Add(e);
             }
